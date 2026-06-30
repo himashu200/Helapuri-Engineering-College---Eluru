@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helapuri Engineering College - Eluru</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* header / navigation */
+        .navbar {
+            background: #0b2a4a;
+            color: white;
+            padding: 1.2rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #f3b33d;
+        }
+
+        .navbar .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar .brand i {
+            color: #f3b33d;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 1.05rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #f3b33d;
+            border-bottom-color: #f3b33d;
+        }
+
+        .nav-links a.active {
+            color: #f3b33d;
+            border-bottom-color: #f3b33d;
+        }
+
+        /* container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        /* cards & sections */
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 2.2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: 0.2s;
+            border: 1px solid #e9edf2;
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #0b2a4a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h2 i {
+            color: #f3b33d;
+            font-size: 2rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .info-item i {
+            width: 2rem;
+            color: #f3b33d;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .highlight {
+            background: #f0f6fe;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .btn {
+            background: #0b2a4a;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: default;
+            transition: 0.2s;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .footer {
+            background: #0b2a4a;
+            color: #d4dce6;
+            padding: 2rem 2rem 1.2rem;
+            margin-top: 2rem;
+            border-top: 4px solid #f3b33d;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a4a6a;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #b0c4db;
+        }
+
+        .footer a {
+            color: #f3b33d;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+        }
+
+        /* page specific */
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            margin-bottom: 1.8rem;
+        }
+
+        .page-title i {
+            color: #f3b33d;
+            margin-right: 12px;
+        }
+
+        .terms-list, .privacy-list {
+            padding-left: 1.5rem;
+            margin: 1.2rem 0;
+        }
+
+        .terms-list li, .privacy-list li {
+            margin-bottom: 0.75rem;
+            list-style-type: '▹ ';
+            padding-left: 0.8rem;
+            color: #1e293b;
+        }
+
+        .terms-list li::marker, .privacy-list li::marker {
+            color: #f3b33d;
+        }
+
+        .contact-detail {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            margin: 0.8rem 0;
+            border-left: 5px solid #f3b33d;
+        }
+
+        .contact-detail i {
+            width: 2rem;
+            color: #0b2a4a;
+        }
+
+        .copyright-highlight {
+            color: #f3b33d;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.95rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="brand">
+            <i class="fas fa-graduation-cap"></i> Helapuri Engineering College
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active" id="nav-home"><i class="fas fa-home"></i> Home</a>
+            <a href="#" id="nav-privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
+            <a href="#" id="nav-terms"><i class="fas fa-file-contract"></i> Terms</a>
+            <a href="#" id="nav-contact"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </header>
+
+    <!-- Main container: dynamic content -->
+    <div class="container" id="main-content">
+        <!-- HOME (default) -->
+        <div id="page-home">
+            <div class="card">
+                <h2><i class="fas fa-university"></i> Helapuri Engineering College – Eluru</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Empowering futures through quality education.</p>
+                <div class="grid-2col">
+                    <div>
+                        <div class="info-item"><i class="fas fa-phone-alt"></i> <span><strong>Contact:</strong> 8328171167</span></div>
+                        <div class="info-item"><i class="fas fa-envelope"></i> <span><strong>Email:</strong> reachecoverseas@gmail.com</span></div>
+                        <div class="info-item"><i class="fas fa-briefcase"></i> <span><strong>Nature:</strong> Education Service</span></div>
+                        <div class="info-item"><i class="fas fa-map-pin"></i> <span><strong>Address:</strong> 25 Shobha Complex, Main Road, Eluru 534001</span></div>
+                    </div>
+                    <div style="background: #eef4fa; border-radius: 20px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center;">
+                        <span class="highlight"><i class="fas fa-check-circle" style="color: #0b2a4a;"></i> AICTE approved</span>
+                        <span class="highlight" style="margin-top: 10px;"><i class="fas fa-award"></i> NAAC accredited</span>
+                        <span class="highlight" style="margin-top: 10px;"><i class="fas fa-user-graduate"></i> 100% placement support</span>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center;">
+                    <span class="btn"><i class="fas fa-handshake"></i> Since 2008 – excellence in engineering</span>
+                </div>
+            </div>
+
+            <!-- quick extra info -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between;">
+                <div style="background: white; border-radius: 20px; padding: 1.2rem 2rem; flex: 1; min-width: 200px; box-shadow: 0 5px 12px rgba(0,0,0,0.03); border: 1px solid #e9edf2;">
+                    <i class="fas fa-chalkboard-teacher" style="color: #f3b33d; font-size: 2rem;"></i>
+                    <h4 style="margin: 10px 0 5px;">Courses</h4>
+                    <p>B.Tech, M.Tech, Diploma</p>
+                </div>
+                <div style="background: white; border-radius: 20px; padding: 1.2rem 2rem; flex: 1; min-width: 200px; box-shadow: 0 5px 12px rgba(0,0,0,0.03); border: 1px solid #e9edf2;">
+                    <i class="fas fa-calendar-alt" style="color: #f3b33d; font-size: 2rem;"></i>
+                    <h4 style="margin: 10px 0 5px;">Admissions</h4>
+                    <p>Open for 2026-27</p>
+                </div>
+                <div style="background: white; border-radius: 20px; padding: 1.2rem 2rem; flex: 1; min-width: 200px; box-shadow: 0 5px 12px rgba(0,0,0,0.03); border: 1px solid #e9edf2;">
+                    <i class="fas fa-globe-asia" style="color: #f3b33d; font-size: 2rem;"></i>
+                    <h4 style="margin: 10px 0 5px;">Location</h4>
+                    <p>Eluru, Andhra Pradesh</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY POLICY (hidden by default) -->
+        <div id="page-privacy" style="display: none;">
+            <div class="card">
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                <p><strong>Last updated:</strong> June 2026</p>
+                <p>Helapuri Engineering College – Eluru (reachecoverseas@gmail.com) respects your privacy. This policy describes how we collect, use, and protect your information.</p>
+                <ul class="privacy-list">
+                    <li><strong>Information collection:</strong> We collect only the data you provide via forms, emails, or phone calls.</li>
+                    <li><strong>Use of data:</strong> We use your information to respond to inquiries, process admissions, and improve our services.</li>
+                    <li><strong>Data security:</strong> We implement industry-standard security measures to protect your data.</li>
+                    <li><strong>Third-party sharing:</strong> We do not sell or share your personal data with third parties except as required by law.</li>
+                    <li><strong>Cookies:</strong> Our website may use cookies to enhance user experience; you can disable them in browser settings.</li>
+                    <li><strong>Your rights:</strong> You may request access, correction, or deletion of your data by contacting us.</li>
+                </ul>
+                <p style="margin-top: 1.2rem;">For any privacy concerns, email us at <strong>reachecoverseas@gmail.com</strong> or call <strong>8328171167</strong>.</p>
+                <div style="background: #f1f5f9; padding: 0.8rem 1.2rem; border-radius: 12px; margin-top: 1.5rem;">
+                    <i class="fas fa-lock" style="color: #0b2a4a;"></i> This policy is effective from 30 June 2026.
+                </div>
+            </div>
+        </div>
+
+        <!-- TERMS AND CONDITIONS (hidden) -->
+        <div id="page-terms" style="display: none;">
+            <div class="card">
+                <h2><i class="fas fa-file-contract"></i> Terms & Conditions</h2>
+                <p><strong>Effective:</strong> June 2026</p>
+                <p>By using the Helapuri Engineering College – Eluru website and services, you agree to the following terms:</p>
+                <ul class="terms-list">
+                    <li><strong>Use of site:</strong> The content is for informational purposes related to education services.</li>
+                    <li><strong>Accuracy:</strong> We strive for accurate information but do not guarantee completeness or timeliness.</li>
+                    <li><strong>Intellectual property:</strong> All content, logos, and materials are owned by Helapuri Engineering College.</li>
+                    <li><strong>User conduct:</strong> You agree not to misuse the site or attempt unauthorized access.</li>
+                    <li><strong>Admissions:</strong> Admission decisions are subject to eligibility and college policies.</li>
+                    <li><strong>Limitation of liability:</strong> We are not liable for any indirect damages arising from use of our services.</li>
+                    <li><strong>Changes:</strong> We reserve the right to update these terms at any time.</li>
+                </ul>
+                <p style="margin-top: 1.2rem;">For questions, contact <strong>reachecoverseas@gmail.com</strong> or <strong>8328171167</strong>.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE (hidden) -->
+        <div id="page-contact" style="display: none;">
+            <div class="card">
+                <h2><i class="fas fa-address-card"></i> Contact Us</h2>
+                <p style="margin-bottom: 1.5rem;">We'd love to hear from you. Reach out through any of the channels below.</p>
+                <div class="grid-2col">
+                    <div>
+                        <div class="contact-detail"><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> 8328171167</div>
+                        <div class="contact-detail"><i class="fas fa-envelope"></i> <strong>Email:</strong> reachecoverseas@gmail.com</div>
+                        <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 25 Shobha Complex, Main Road, Eluru 534001</div>
+                        <div class="contact-detail"><i class="fas fa-clock"></i> <strong>Office hours:</strong> Mon–Sat, 9:00 AM – 5:00 PM</div>
+                    </div>
+                    <div style="background: #eef4fa; border-radius: 20px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <p><i class="fas fa-graduation-cap" style="color: #f3b33d;"></i> <strong>Helapuri Engineering College</strong></p>
+                        <p><i class="fas fa-briefcase"></i> Nature of Business: Education Service</p>
+                        <p><i class="fas fa-building"></i> Since 2008</p>
+                        <p><i class="fas fa-globe"></i> <a href="#" style="color: #0b2a4a; text-decoration: none;">www.helapuri.edu.in</a> (under construction)</p>
+                        <div style="margin-top: 0.8rem; background: white; border-radius: 60px; padding: 0.4rem 1rem; display: inline-block;">
+                            <i class="fas fa-phone" style="color: #0b2a4a;"></i> 8328171167
+                        </div>
+                    </div>
+                </div>
+                <!-- extra note -->
+                <div style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center; background: #f9fcff; border-radius: 30px;">
+                    <p><i class="fas fa-paper-plane" style="color: #f3b33d;"></i> We respond to all queries within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer with copyright and links -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <span style="font-weight: 600; font-size: 1.2rem; color: white;"><i class="fas fa-graduation-cap" style="color: #f3b33d;"></i> Helapuri Engineering College</span>
+                <p style="margin-top: 4px; font-size: 0.9rem;">25 Shobha Complex, Main Road, Eluru 534001</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" id="footer-privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
+                <a href="#" id="footer-terms"><i class="fas fa-file-contract"></i> Terms</a>
+                <a href="#" id="footer-contact"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#" id="footer-home"><i class="fas fa-home"></i> Home</a>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <i class="fas fa-copyright"></i> <span class="copyright-highlight">Copyright by Helapuri Engineering College - Eluru</span> &nbsp;|&nbsp; All rights reserved &nbsp;|&nbsp; 2026
+        </div>
+    </footer>
+
+    <!-- JavaScript: page navigation & display -->
+    <script>
+        (function() {
+            const pages = {
+                home: document.getElementById('page-home'),
+                privacy: document.getElementById('page-privacy'),
+                terms: document.getElementById('page-terms'),
+                contact: document.getElementById('page-contact')
+            };
+
+            // nav links
+            const navHome = document.getElementById('nav-home');
+            const navPrivacy = document.getElementById('nav-privacy');
+            const navTerms = document.getElementById('nav-terms');
+            const navContact = document.getElementById('nav-contact');
+            // footer links
+            const fHome = document.getElementById('footer-home');
+            const fPrivacy = document.getElementById('footer-privacy');
+            const fTerms = document.getElementById('footer-terms');
+            const fContact = document.getElementById('footer-contact');
+
+            function showPage(pageId) {
+                // hide all
+                Object.keys(pages).forEach(key => {
+                    pages[key].style.display = 'none';
+                });
+                // show selected
+                if (pages[pageId]) {
+                    pages[pageId].style.display = 'block';
+                }
+                // update active class on nav
+                [navHome, navPrivacy, navTerms, navContact].forEach(link => link.classList.remove('active'));
+                if (pageId === 'home') navHome.classList.add('active');
+                else if (pageId === 'privacy') navPrivacy.classList.add('active');
+                else if (pageId === 'terms') navTerms.classList.add('active');
+                else if (pageId === 'contact') navContact.classList.add('active');
+            }
+
+            // event listeners
+            navHome.addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
+            navPrivacy.addEventListener('click', (e) => { e.preventDefault(); showPage('privacy'); });
+            navTerms.addEventListener('click', (e) => { e.preventDefault(); showPage('terms'); });
+            navContact.addEventListener('click', (e) => { e.preventDefault(); showPage('contact'); });
+
+            fHome.addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
+            fPrivacy.addEventListener('click', (e) => { e.preventDefault(); showPage('privacy'); });
+            fTerms.addEventListener('click', (e) => { e.preventDefault(); showPage('terms'); });
+            fContact.addEventListener('click', (e) => { e.preventDefault(); showPage('contact'); });
+
+            // default: home
+            showPage('home');
+        })();
+    </script>
+
+</body>
+</html>
